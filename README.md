@@ -6,7 +6,7 @@ Isometric minimal-code style game at html5 canvas and javascript
 Demo
 ----
 
-http://mitallast.github.com/diablo-js/
+https://www.ycechung.top/diablo-js/
 
 CHANGELOG
 ---------
@@ -20,6 +20,8 @@ CHANGELOG
 Useful tools
 ------------
 
+### Resource Extraction and Shadow Generation
+
 Tool for extract original diablo resources:
 https://github.com/mitallast/diablo-js/tree/master/dttool
 
@@ -28,9 +30,9 @@ https://github.com/mitallast/diablo-js/tree/master/shadowmaker
 Builded shadowmaker
 https://github.com/mitallast/diablo-js/blob/master/shadowmaker.jar
 
+### Batch Image Processing
+
 Some shell scripts for batch update images:
 https://github.com/mitallast/diablo-js/blob/master/monsters/make.sh
 https://github.com/mitallast/diablo-js/blob/master/monsters/rename.sh
 
-More information you can find at original research from blizzhackers:
-http://www.blizzhackers.cc/viewtopic.php?f=182&t=370174&start=0
