@@ -1,5 +1,15 @@
 (function(undefined) {
 
+// 🛡️ Sentinel: Frame-busting clickjacking protection (for static sites without CSP headers)
+if (window.top !== window.self) {
+    try {
+        window.top.location = window.self.location;
+    } catch (e) {
+        // If we can't redirect the top window (e.g. sandbox restriction), clear the body
+        document.body.innerHTML = '<h1>Clickjacking Protection</h1><p>This content cannot be displayed in a frame.</p>';
+    }
+}
+
 var imageCount=0;
 function loadImage(url,angles,steps,offsetX){
     imageCount++;
