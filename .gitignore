@@ -1,2 +1,5 @@
 .DS_Store
 diablo.js2
+iframe_test.html
+test_clickjacking.py
+__pycache__
