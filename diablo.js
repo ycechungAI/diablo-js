@@ -8,6 +8,7 @@ if (window.top !== window.self) {
         // If we can't redirect the top window (e.g. sandbox restriction), clear the body
         document.body.innerHTML = '<h1>Clickjacking Protection</h1><p>This content cannot be displayed in a frame.</p>';
     }
+    return; // Halt execution immediately to prevent further initialization
 }
 
 var imageCount=0;
