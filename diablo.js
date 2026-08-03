@@ -1,4 +1,5 @@
 (function(undefined) {
+"use strict";
 
 // 🛡️ Sentinel: Frame-busting clickjacking protection (for static sites without CSP headers)
 if (window.top !== window.self) {
@@ -18,6 +19,10 @@ function loadImage(url,angles,steps,offsetX){
     i.onload=function(){
         imageCount--;
         i.offsetX=offsetX?((i.height/angles)>>2):0;
+    }
+    i.onerror=function(){
+        imageCount--;
+        console.error("Failed to load image: " + url);
     }
     i.src=url;
     if(typeof angles!="undefined" && typeof steps!="undefined"){
@@ -192,13 +197,13 @@ var level = {
 };
 for(var l in level){
     level[l].tiles={};  
-    for(i in level[l].header) if(!level[l].tiles[i]) level[l].tiles[i]=loadImage(level[l].prefix+i+".png");
+    for(var i in level[l].header) if(!level[l].tiles[i]) level[l].tiles[i]=loadImage(level[l].prefix+i+".png");
 } 
 
 var floor=document.getElementById("floor").getContext("2d");
 floor.w=floor.canvas.width;
 floor.h=floor.canvas.height;
-var tw=160, th=tw/2, s=tw*0.705, a=Math.PI/4, visible=7, asin=acos=Math.sin(a);
+var tw=160, th=tw/2, s=tw*0.705, a=Math.PI/4, visible=7, asin=Math.sin(a), acos=Math.sin(a);
 
 var barrelSprite=loadImage("sprite/barrel64.png");
 var coinSprite=loadImage("sprite/coins10.png");
@@ -430,7 +435,7 @@ function processClick(){
 
 function renderObjects(){
     var zb=loadZb(false);
-    for(z in zb){
+    for(var z in zb){
         var m=zb[z];
         floor.save()
         var sx=(m.x - m.y)*acos+m.offset_x,
@@ -657,7 +662,7 @@ function Mob(x,y,name){
         var dx=(this.to_x - this.x),
             dy=(this.to_y - this.y);
         if((Math.sqrt((dx*dx)+(dy*dy)))>this.st){ // run
-            var tx=0;ty=0;
+            var tx=0, ty=0;
             for(var st=0;st<this.st;st+=0.01){
                 var sx=st * dx / Math.sqrt((dx*dx) + (dy*dy));
                 var sy=sx * dy / dx;

@@ -3,3 +3,4 @@ diablo.js2
 iframe_test.html
 test_clickjacking.py
 __pycache__
+node_modules/
