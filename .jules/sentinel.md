@@ -12,3 +12,8 @@
 **Vulnerability:** Clickjacking frame-busting logic does not halt execution (DOM clears but script continues).
 **Learning:** Frame-busting logic placed inside an IIFE (Immediately Invoked Function Expression) requires explicit halting to prevent the remainder of the script from executing after the clickjacking attempt is detected. However, a global `return;` is illegal in unbundled scripts and causes a `SyntaxError`.
 **Prevention:** Always use `throw new Error()` inside clickjacking defense blocks to safely halt script execution and prevent unintended code from running while framed.
+
+## 2024-05-28 - Image Load Denial of Service (Client-side)
+**Vulnerability:** Game initialization loop halts forever if an image resource fails to load (e.g. 404).
+**Learning:** Client-side initialization loops depending on asynchronous resource loading must handle failure states. A missing `onerror` handler means the counter is never decremented, causing an infinite loading state (DoS).
+**Prevention:** Always implement `onerror` handlers on `Image` objects in game initialization loops to gracefully handle resource failures and prevent infinite hangs.
