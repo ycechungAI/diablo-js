@@ -6,7 +6,7 @@ if (window.top !== window.self) {
         window.top.location = window.self.location;
     } catch (e) {
         // If we can't redirect the top window (e.g. sandbox restriction), clear the body
-        document.body.innerHTML = '<h1>Clickjacking Protection</h1><p>This content cannot be displayed in a frame.</p>';
+        document.body.innerText = 'Clickjacking Protection: This content cannot be displayed in a frame.';
     }
     throw new Error('Clickjacking detected');
 }
